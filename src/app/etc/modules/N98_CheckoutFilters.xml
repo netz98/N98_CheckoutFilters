@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category   Netz98
+ * @package    N98_CheckoutFilters
+ */
+ -->
+<config>
+    <modules>
+        <N98_CheckoutFilters>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Adminhtml />
+            </depends>
+        </N98_CheckoutFilters>
+    </modules>
+</config>

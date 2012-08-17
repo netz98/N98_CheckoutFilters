@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category   Netz98
+ * @package    N98_CheckoutFilters
+ */
+ -->
+<config>
+    <modules>
+        <N98_CheckoutFilters>
+            <version>1.0.0</version>
+        </N98_CheckoutFilters>
+    </modules>
+    <global>
+        <blocks>
+            <n98_checkoutfilters>
+                <class>N98_CheckoutFilters_Block</class>
+            </n98_checkoutfilters>
+            <adminhtml>
+                <rewrite>
+                    <system_config_form>N98_CheckoutFilters_Block_Adminhtml_System_Config_Form</system_config_form>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        <helpers>
+            <n98_checkoutfilters>
+                <class>N98_CheckoutFilters_Helper</class>
+            </n98_checkoutfilters>
+        </helpers>
+        <models>
+            <n98_checkoutfilters>
+                <class>N98_CheckoutFilters_Model</class>
+            </n98_checkoutfilters>
+            <shipping>
+                <rewrite>
+                    <shipping>N98_CheckoutFilters_Model_Shipping_Shipping</shipping>
+                </rewrite>
+            </shipping>
+        </models>
+    </global>
+    <frontend>
+        <events>
+            <payment_method_is_active>
+                <observers>
+                    <checkout_filter_checks>
+                        <class>n98_checkoutfilters/payment_observer</class>
+                        <method>methodIsAvailable</method>
+                    </checkout_filter_checks>
+                </observers>
+            </payment_method_is_active>
+        </events>
+    </frontend>
+    <default>
+        <n98_checkoutfilters>
+            <payment>
+                <free_hide_other>1</free_hide_other>
+            </payment>
+        </n98_checkoutfilters>
+    </default>
+</config>

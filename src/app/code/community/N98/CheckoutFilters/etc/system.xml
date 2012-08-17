@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <n98_checkoutfilters translate="label" module="n98_checkoutfilters">
+            <label>Checkout Filters</label>
+            <tab>n98</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1000000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <payment translate="label">
+                    <label>Payment</label>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <free_hide_other>
+                            <label>Hide other payment for zero totals</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </free_hide_other>
+                    </fields>
+                </payment>
+            </groups>
+        </n98_checkoutfilters>
+    </sections>
+</config>

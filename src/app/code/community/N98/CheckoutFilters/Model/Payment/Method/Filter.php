@@ -27,7 +27,7 @@ interface N98_CheckoutFilters_Model_Payment_Method_Filter
      * @param Mage_Sales_Model_Quote $
      * @return mixed
      */
-    public function setQuote(Mage_Sales_Model_Quote $quote);
+    public function setQuote($quote);
 
     /**
      * @abstract

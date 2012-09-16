@@ -42,7 +42,7 @@ class N98_CheckoutFilters_Model_Payment_Method_Filter_Abstract
      *
      * @return N98_CheckoutFilters_Model_Payment_Method_Filter_Abstract
      */
-    public function setQuote(Mage_Sales_Model_Quote $quote)
+    public function setQuote($quote)
     {
         $this->_quote = $quote;
 

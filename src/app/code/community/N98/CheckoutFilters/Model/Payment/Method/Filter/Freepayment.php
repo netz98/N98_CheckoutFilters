@@ -34,6 +34,7 @@ class N98_CheckoutFilters_Model_Payment_Method_Filter_Freepayment
              * if total is 0, don't show other payment methods
              */
             if ($this->getMethodInstance()->getCode() != 'free'
+                && $this->getQuote()
                 && $this->getQuote()->getBaseGrandTotal() == 0
             ) {
                 $this->getResult()->isAvailable = false;

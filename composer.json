@@ -1,0 +1,16 @@
+{
+    "name": "n98/N98_CheckoutFilters",
+    "license": "OSL-3.0",
+    "type": "magento-module",
+    "description": "Filter your payment and shipping methods.",
+    "homepage": "https://github.com/netz98/N98_CheckoutFilters",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "dev-master"
+    },
+    "authors":[
+        {
+            "name":"netz98 new media GmbH",
+            "email":"magento@netz98.de"
+        }
+    ]
+}

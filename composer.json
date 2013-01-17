@@ -5,7 +5,7 @@
     "description": "Filter your payment and shipping methods.",
     "homepage": "https://github.com/netz98/N98_CheckoutFilters",
     "require": {
-        "magento-hackathon/magento-composer-installer": "dev-master"
+        "magento-hackathon/magento-composer-installer": "*"
     },
     "authors":[
         {

@@ -9,36 +9,47 @@
  * without authorization of netz98 new media GmbH.
  *
  * @copyright  Copyright (c) 1999-2010 netz98 new media GmbH (http://www.netz98.de)
- * @author cm
  * @category N98
  * @package N98_CheckoutFilters
  */
-
-/**
- * @category N98
- * @package N98_CheckoutFilters
- */
-class N98_CheckoutFilters_Block_Adminhtml_System_Config_Form
-    extends Mage_Adminhtml_Block_System_Config_Form
+class N98_CheckoutFilters_Model_Adminhtml_Config_Observer
 {
     /**
-     * @return N98_CheckoutFilters_Block_Adminhtml_System_Config_Form
+     * Add fields to full system config object
+     *
+     * @param Varien_Event_Observer $observer
+     * @return N98_CheckoutFilters_Model_Adminhtml_Config_Observer
      */
-    protected function _initObjects()
+    public function addFieldsToConfig(Varien_Event_Observer $observer)
     {
-        parent::_initObjects();
+        /** @var $config Mage_Core_Model_Config_Base */
+        $config = $observer->getEvent()->getData('config');
 
-        $sections = $this->_configFields->getSection($this->getSectionCode(), $this->getWebsiteCode(), $this->getStoreCode());
+        $sections = $config->getNode('sections');
 
+        foreach ($sections->children() as $section) {
+            /** @var $section Mage_Core_Model_Config_Element */
+            $this->createConfigFields($section);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Create config field during runtime.
+     *
+     * @param Varien_Simplexml_Element $section
+     * @return N98_CheckoutFilters_Model_Adminhtml_Config_Observer
+     */
+    public function createConfigFields($section)
+    {
         /**
-         *  Create config field during runtime.
-         *
          * Check if we are in sales tab and sub-tab payment or shipping.
          * Then we create SimpleXMLElements for form init.
          */
-        if ($sections->tab == 'sales') {
-            if (in_array($sections->label, array('Payment Methods', 'Shipping Methods'))) {
-                foreach ($sections->groups as $group) {
+        if ($section->tab == 'sales') {
+            if (in_array($section->label, array('Payment Methods', 'Shipping Methods'))) {
+                foreach ($section->groups as $group) {
                     foreach ($group as $subGroup) {
                         if (isset($subGroup->fields)) {
                             $this->_addCustomergroupFieldToConfigGroup($subGroup);
@@ -48,8 +59,8 @@ class N98_CheckoutFilters_Block_Adminhtml_System_Config_Form
             }
 
             // Add fields only for payment methods
-            if (in_array($sections->label, array('Payment Methods'))) {
-                foreach ($sections->groups as $group) {
+            if (in_array($section->label, array('Payment Methods'))) {
+                foreach ($section->groups as $group) {
                     foreach ($group as $subGroup) {
                         if (isset($subGroup->fields)) {
                             $this->_addMinYearFieldToConfigGroup($subGroup);
@@ -62,14 +73,14 @@ class N98_CheckoutFilters_Block_Adminhtml_System_Config_Form
         /**
          * Paypal uses a special config tab
          */
-        if ($sections->tab == 'sales' && $sections->getName() == 'paypal') {
-            if (isset($sections->groups->express)) {
-                $this->_addCustomergroupFieldToConfigGroup($sections->groups->express);
-                $this->_addMinYearFieldToConfigGroup($sections->groups->express);
+        if ($section->tab == 'sales' && $section->getName() == 'paypal') {
+            if (isset($section->groups->express)) {
+                $this->_addCustomergroupFieldToConfigGroup($section->groups->express);
+                $this->_addMinYearFieldToConfigGroup($section->groups->express);
             }
-            if (isset($sections->groups->wps)) {
-                $this->_addCustomergroupFieldToConfigGroup($sections->groups->wps);
-                $this->_addMinYearFieldToConfigGroup($sections->groups->wps);
+            if (isset($section->groups->wps)) {
+                $this->_addCustomergroupFieldToConfigGroup($section->groups->wps);
+                $this->_addMinYearFieldToConfigGroup($section->groups->wps);
             }
         }
 

@@ -12,16 +12,6 @@
         </N98_CheckoutFilters>
     </modules>
     <global>
-        <blocks>
-            <n98_checkoutfilters>
-                <class>N98_CheckoutFilters_Block</class>
-            </n98_checkoutfilters>
-            <adminhtml>
-                <rewrite>
-                    <system_config_form>N98_CheckoutFilters_Block_Adminhtml_System_Config_Form</system_config_form>
-                </rewrite>
-            </adminhtml>
-        </blocks>
         <helpers>
             <n98_checkoutfilters>
                 <class>N98_CheckoutFilters_Helper</class>
@@ -50,6 +40,18 @@
             </payment_method_is_active>
         </events>
     </frontend>
+    <adminhtml>
+        <events>
+            <adminhtml_init_system_config>
+                <observers>
+                    <checkout_filter_config>
+                        <class>n98_checkoutfilters/adminhtml_config_observer</class>
+                        <method>addFieldsToConfig</method>
+                    </checkout_filter_config>
+                </observers>
+            </adminhtml_init_system_config>
+        </events>
+    </adminhtml>
     <default>
         <n98_checkoutfilters>
             <payment>

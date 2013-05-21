@@ -49,8 +49,12 @@ class N98_CheckoutFilters_Model_Shipping_Shipping
      */
     protected function _checkCarrierByCustomerGroup($carrierCode)
     {
-        $customer = Mage::helper('customer')->getCustomer();
-        /* @var $customer Mage_Customer_Model_Customer */
+        if (Mage::app()->getStore()->isAdmin()) {
+            $customer = Mage::getSingleton('adminhtml/session_quote')->getCustomer();
+        } else {
+            /* @var $customer Mage_Customer_Model_Customer */
+            $customer = Mage::helper('customer')->getCustomer();
+        }
 
         $carrierCustomerGroupConfig = Mage::getStoreConfig('carriers/' . $carrierCode . '/' . self::XML_CUSTOMER_GROUP_CONFIG_FIELD);
 

@@ -32,6 +32,8 @@ class N98_CheckoutFilters_Model_Payment_Method_Filter_Customer_Group
             $customerGroupConfig = Mage::getStoreConfig('paypal/wps/' . self::XML_CUSTOMER_GROUP_CONFIG_FIELD);
         } elseif ($paymentMethodInstance instanceof Mage_Paypal_Model_Express) {
             $customerGroupConfig = Mage::getStoreConfig('paypal/express/' . self::XML_CUSTOMER_GROUP_CONFIG_FIELD);
+        } elseif ($paymentMethodInstance instanceof Mage_Paypal_Model_Direct) {
+            $customerGroupConfig = Mage::getStoreConfig('paypal/wpp/' . self::XML_CUSTOMER_GROUP_CONFIG_FIELD);
         } elseif ($paymentMethodInstance instanceof Mage_GoogleCheckout_Model_Payment) {
             $customerGroupConfig = Mage::getStoreConfig('google/checkout/' . self::XML_CUSTOMER_GROUP_CONFIG_FIELD);
         } else {

@@ -82,6 +82,10 @@ class N98_CheckoutFilters_Model_Adminhtml_Config_Observer
                 $this->_addCustomergroupFieldToConfigGroup($section->groups->wps);
                 $this->_addMinYearFieldToConfigGroup($section->groups->wps);
             }
+            if (isset($section->groups->wpp)) {
+                $this->_addCustomergroupFieldToConfigGroup($section->groups->wpp);
+                $this->_addMinYearFieldToConfigGroup($section->groups->wpp);
+            }
         }
 
         return $this;

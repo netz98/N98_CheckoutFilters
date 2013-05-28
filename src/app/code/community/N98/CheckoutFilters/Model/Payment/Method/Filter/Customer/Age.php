@@ -60,6 +60,10 @@ class N98_CheckoutFilters_Model_Payment_Method_Filter_Customer_Age
     protected function _getMinAgeByPaymentMethod()
     {
         switch ($this->getMethodInstance()->getCode()) {
+            case Mage_Paypal_Model_Config::METHOD_WPP_DIRECT:
+                $minAge = Mage::getStoreConfig('paypal/wpp/' . self::XML_MIN_AGE_CONFIG_FIELD);
+                break;
+
             case Mage_Paypal_Model_Config::METHOD_WPP_EXPRESS:
                 $minAge = Mage::getStoreConfig('paypal/express/' . self::XML_MIN_AGE_CONFIG_FIELD);
                 break;

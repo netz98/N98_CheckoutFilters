@@ -8,7 +8,7 @@ Payment
 
 - Filter by customer group
 - Filter by customer's age
-- Hide other payment methods if grant total is zero. (Behaviour can be disabled)
+- Hide other payment methods if grand total is zero (behaviour can be disabled)
 
 Shipping
 --------

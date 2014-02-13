@@ -88,6 +88,26 @@ class N98_CheckoutFilters_Model_Adminhtml_Config_Observer
             }
         }
 
+        /**
+         * Ebizmarts_Sagepay uses a special config tab
+         */
+        if ('sales' == $section->tab && 'sagepaysuite' == $section->getName()) {
+            $my_groups = array(
+                'sagepayserver',
+                'sagepayserver_moto',
+                'sagepaydirectpro_moto',
+                'sagepaydirectpro',
+                'sagepayform',
+                'sagepaypaypal',
+                'sagepayrepeat'
+            );
+            foreach ($my_groups as $group) {
+                $this_group = $section->groups->{$group};
+                $this->_addCustomergroupFieldToConfigGroup($this_group);
+                $this->_addMinYearFieldToConfigGroup($this_group);
+            }
+        }
+
         return $this;
     }
 
